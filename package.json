@@ -1,0 +1,204 @@
+{
+	"name": "tabby-tab-manager",
+	"displayName": "Tabby Tab Manager",
+	"description": "Manage, Filter and Restore tabs easily.",
+	"version": "0.0.2",
+	"publisher": "NamitArora",
+	"private": false,
+	"icon": "media/icon.png",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/BlazeStorm001/tabby"
+	},
+	"engines": {
+		"vscode": "^1.74.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+	],
+	"main": "./out/tabby.js",
+	"contributes": {
+		"views": {
+			"explorer": [
+				{
+					"id": "closedTabsHistory",
+					"name": "Tab History"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "tabby.toggleTabMode",
+				"title": "Tabby: Activate Tab Mode"
+			},
+			{
+				"command": "tabby.reopenFromHistory",
+				"title": "Tabby: Open Tabs from History"
+			},
+			{
+				"command": "tabby.filterTabs",
+				"title": "Tabby: Filter Tabs in Active Tab Group"
+			},
+			{
+				"command": "tabby.clearTabHistory",
+				"title": "Tabby: Clear Tab History",
+				"icon": "$(trash)"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "tabby.toggleTabMode",
+				"key": "F10"
+			},
+			{
+				"command": "tabby.filterTabs",
+				"key": "f",
+				"when": "tabModeActive  && !inputBoxVisible"
+			},
+			{
+				"command": "tabby.navigateToTabPrevious",
+				"key": "j",
+				"when": "tabModeActive  && !inputBoxVisible"
+			},
+			{
+				"command": "tabby.navigateToTabNext",
+				"key": "k",
+				"when": "tabModeActive  && !inputBoxVisible"
+			},
+			{
+				"command": "tabby.closeTab",
+				"key": "w",
+				"when": "tabModeActive  && !inputBoxVisible"
+			},
+			{
+				"command": "tabby.reopenFromHistory",
+				"key": "h",
+				"when": "tabModeActive  && !inputBoxVisible"
+			},
+			{
+				"command": "tabby.moveTabLeft",
+				"key": "a",
+				"when": "tabModeActive  && !inputBoxVisible"
+			},
+			{
+				"command": "tabby.moveTabRight",
+				"key": "d",
+				"when": "tabModeActive  && !inputBoxVisible"
+			},
+			{
+				"command": "tabby.navigateToTab",
+				"args": {
+					"tabIndex": 0
+				},
+				"key": "1",
+				"when": "tabModeActive  && !inputBoxVisible"
+			},
+			{
+				"command": "tabby.navigateToTab",
+				"args": {
+					"tabIndex": 1
+				},
+				"key": "2",
+				"when": "tabModeActive  && !inputBoxVisible"
+			},
+			{
+				"command": "tabby.navigateToTab",
+				"args": {
+					"tabIndex": 2
+				},
+				"key": "3",
+				"when": "tabModeActive && !inputBoxVisible"
+			},
+			{
+				"command": "tabby.navigateToTab",
+				"args": {
+					"tabIndex": 3
+				},
+				"key": "4",
+				"when": "tabModeActive  && !inputBoxVisible"
+			},
+			{
+				"command": "tabby.navigateToTab",
+				"args": {
+					"tabIndex": 4
+				},
+				"key": "5",
+				"when": "tabModeActive && !inputBoxVisible"
+			},
+			{
+				"command": "tabby.navigateToTab",
+				"args": {
+					"tabIndex": 5
+				},
+				"key": "6",
+				"when": "tabModeActive && !inputBoxVisible"
+			},
+			{
+				"command": "tabby.navigateToTab",
+				"args": {
+					"tabIndex": 6
+				},
+				"key": "7",
+				"when": "tabModeActive  && !inputBoxVisible"
+			},
+			{
+				"command": "tabby.navigateToTab",
+				"args": {
+					"tabIndex": 7
+				},
+				"key": "8",
+				"when": "tabModeActive  && !inputBoxVisible"
+			},
+			{
+				"command": "tabby.navigateToTab",
+				"args": {
+					"tabIndex": 8
+				},
+				"key": "9",
+				"when": "tabModeActive && !inputBoxVisible"
+			}
+		],
+		"menus": {
+			"view/title": [
+				{
+					"command": "tabby.clearTabHistory",
+					"when": "view == closedTabsHistory",
+					"group": "navigation"
+				}
+
+			]
+		},
+		"configuration": [
+			{
+				"type": "object",
+				"title": "Tab History Settings",
+				"properties": {
+					"tabby.tabHistoryLimit": {
+						"type": "number",
+						"default": 1000,
+						"description": "The maximum number of closed tabs to store in the history"
+					}
+				}
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"lint": "eslint \"src/**/*.ts\""
+	},
+	"devDependencies": {
+		"@types/node": "^18",
+		"@types/vscode": "^1.73.0",
+		"@typescript-eslint/eslint-plugin": "^7.14.0",
+		"@typescript-eslint/parser": "^7.14.0",
+		"eslint": "^8.26.0",
+		"typescript": "^5.5.2"
+	},
+	"dependencies": {
+	}
+}
