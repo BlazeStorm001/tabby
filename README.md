@@ -18,7 +18,7 @@ Lost in the ocean of your opened tabs, no worries **Tabby** is there to help you
    - `d` — Move the current tab to the right.
    - Numbers `1-9` — Quickly switch to the tab at the corresponding index.
 
-### 3. **Filtering Tabs**
+### 2. **Filtering Tabs**
    ![filtering](media/filter_demo.gif)
    - Press `f` while in Tab Mode or run command `> Tabby: Filter Tabs in Active Tab Group` to filter tabs in the active tabgroup. Enter a pattern into the prompt to keep tabs matching the pattern open and close the rest.
 
