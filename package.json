@@ -182,6 +182,17 @@
 						"description": "The maximum number of closed tabs to store in the history"
 					}
 				}
+			},
+			{
+				"type": "object",
+				"title": "Close Pinned Tabs",
+				"properties": {
+					"tabby.closePinnedTabs": {
+						"type": "boolean",
+						"default": false,
+						"description": "Close Pinned Tabs while filtering"
+					}
+				}
 			}
 		]
 	},
