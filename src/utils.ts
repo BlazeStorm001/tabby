@@ -20,10 +20,14 @@ export function validateAndObtainAbsolutePath(inputPath: string): string {
 	if (!path.isAbsolute(inputPath)) {
 		inputPath = path.join(path.join(currentWorkSpaceFolderPath, ""), inputPath);
 	}
-	//console.log("After conversion to abs path, inputPath = ", inputPath);
+	// console.log("inputpath =", inputPath);
+	// uncapitalize the drive letter in Windows
+	let finalPath = vscode.Uri.file(inputPath).path;
+	finalPath = finalPath.replace(/^\/([A-Z]):/, (match, driveLetter) => "/" + driveLetter.toLowerCase() + ":");
+	// console.log("After conversion to abs path, finalPath = ", finalPath);
 	try {
 		// TODO: Add check to verify if valid path
-		return vscode.Uri.file(inputPath).path;
+		return finalPath;
 	} catch (error) {
 		return "";
 	}
