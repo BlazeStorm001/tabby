@@ -2,7 +2,7 @@
 	"name": "tabby-tab-manager",
 	"displayName": "Tabby Tab Manager",
 	"description": "Manage, Filter and Restore tabs easily.",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"publisher": "NamitArora",
 	"private": false,
 	"icon": "media/icon.png",
