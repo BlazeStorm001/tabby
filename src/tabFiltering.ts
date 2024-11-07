@@ -3,6 +3,7 @@ import { Tab } from './Tab';
 import * as path from 'path';
 import * as utils from './utils';
 import { getInputFromPrompt } from './utils';
+import { savedTabsForUndo } from './tabClosing';
 
 export function filterTabsByPattern<T extends vscode.Tab | Tab>(
 	tabs: readonly T[],
@@ -127,10 +128,11 @@ function convertPatternToRegex(pattern: string): RegExp {
 }
 
 export function registerFilterCmdsAndListeners(context: vscode.ExtensionContext) {
+
 	const filterTabsCmd = vscode.commands.registerCommand('tabby.filterTabs', async () => {
 		const filterPattern = await getInputFromPrompt("Enter the filter: ", "*.py, 1:3, ?myfolder, \\123");
 		if (!filterPattern) {
-			return;
+		return;
 		}
 		const activeTabs = vscode.window.tabGroups.activeTabGroup.tabs;
 
@@ -149,9 +151,12 @@ export function registerFilterCmdsAndListeners(context: vscode.ExtensionContext)
 			return;
 		}
 
-		await vscode.window.tabGroups.close(tabsToClose);
-
+		const areAllTabsClosed = await vscode.window.tabGroups.close(tabsToClose);
+		if (areAllTabsClosed) {
+			savedTabsForUndo.push(activeTabs.map(tab => Tab.fromVscodeTab(tab)));
+		}
 	});
+
 	context.subscriptions.push(
 		filterTabsCmd,
 	);

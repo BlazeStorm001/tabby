@@ -8,8 +8,6 @@ export class Tab {
 		readonly original?: vscode.Uri; // For TextDiff or NotebookDiff tabs
 		readonly modified?: vscode.Uri; // For TextDiff or NotebookDiff tabs
 	};
-	readonly timestamp?: number;
-
 
 	constructor(
 		label: string,
@@ -17,12 +15,10 @@ export class Tab {
 		uri?: vscode.Uri,
 		originalUri?: vscode.Uri,
 		modifiedUri?: vscode.Uri,
-		timestamp?: number
 	) {
 		this.label = label;
 		this.type = type;
 		this.input = { uri, original: originalUri, modified: modifiedUri };
-		this.timestamp = timestamp;
 	}
 
 	toJSON(): string {
@@ -32,7 +28,6 @@ export class Tab {
 			uri: this.input?.uri?.toString(),
 			originalUri: this.input?.original?.toString(),
 			modifiedUri: this.input?.modified?.toString(),
-			timestamp: this.timestamp
 		});
 	}
 
@@ -44,11 +39,10 @@ export class Tab {
 		const uri = data.uri ? vscode.Uri.parse(data.uri) : undefined;
 		const originalUri = data.originalUri ? vscode.Uri.parse(data.originalUri) : undefined;
 		const modifiedUri = data.modifiedUri ? vscode.Uri.parse(data.modifiedUri) : undefined;
-		const timestamp = data.timestamp;
-		return new Tab(label, type, uri, originalUri, modifiedUri, timestamp);
+		return new Tab(label, type, uri, originalUri, modifiedUri);
 	}
 
-	static fromVscodeTab(tab: vscode.Tab, timestamp?: number): Tab {
+	static fromVscodeTab(tab: vscode.Tab): Tab {
 		const label = tab.label;
 		const type = this.getTabType(tab);
 		let uri: vscode.Uri | undefined;
@@ -64,7 +58,7 @@ export class Tab {
 			modifiedUri = tabInput.modified;
 		}
 
-		return new Tab(label, type, uri, originalUri, modifiedUri, timestamp);
+		return new Tab(label, type, uri, originalUri, modifiedUri);
 	}
 
 	open() {

@@ -37,18 +37,10 @@ export function registerNavCmdsAndListeners(context: vscode.ExtensionContext) {
 
 	});
 
-	const closeTabCmd = vscode.commands.registerCommand('tabby.closeTab', async () => {
-		if (!isTabModeEnabled() || isInputBoxVisible()) return;
-
-		await vscode.commands.executeCommand('workbench.action.closeActiveEditor');
-
-	});
-
 	context.subscriptions.push(
 		navigateToTabNext,
 		navigateToTabPreviousCmd,
 		navigateToTabCmd,
-		closeTabCmd,
 		moveTabRightCmd,
 		moveTabLeftCmd,
 	);

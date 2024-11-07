@@ -3,6 +3,7 @@ import { TabHistoryProvider } from './TabHistoryProvider';
 import { registerFilterCmdsAndListeners } from './tabFiltering';
 import { registerHistoryCmdsAndListeners } from './tabHistory';
 import { registerNavCmdsAndListeners } from './tabNavigation';
+import { registerCloseCmdsAndListeners } from './tabClosing';
 
 let statusBarItem: vscode.StatusBarItem;
 let tabModeActive = false;
@@ -28,6 +29,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   });
 
+  registerCloseCmdsAndListeners(context, tabHistoryProvider);
   registerFilterCmdsAndListeners(context);
   registerHistoryCmdsAndListeners(context, tabHistoryProvider);
   registerNavCmdsAndListeners(context);

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.0
+ - Added shortcut (u) to undo last tab close operation.
+ - Added shortcut (c) to close all tabs.
+
 ## 0.0.4
  - Fixed tab filtering based on absolute path on Windows.
 

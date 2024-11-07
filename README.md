@@ -11,7 +11,8 @@ Lost in the ocean of your opened tabs, no worries **Tabby** is there to help you
    - While in Tab Mode, you can quickly perform actions on tabs using single key shortcuts.
 
 #### **Tab Navigation and Management Shortcuts**
-   - `w` — Close the current tab.
+   - `w` — Close the active tab.
+   - `c` — Close all tabs in the active tab group.
    - `j` — Go to the previous tab.
    - `k` — Go to the next tab.
    - `a` — Move the current tab to the left.
@@ -52,5 +53,6 @@ Lost in the ocean of your opened tabs, no worries **Tabby** is there to help you
   ![history](media/history_demo.gif)
    - Quickly access recently closed tabs from the "Tab History".
    - Press `h` in Tab Mode or run command `> Tabby: Open Tabs from History` to quickly restore closed tabs based on the patterns described above.
+   - Press `u` in Tab Mode to undo restore tabs closed recently (works only for tabs closed/filtered using Tabby).
 
 

@@ -2,7 +2,7 @@
 	"name": "tabby-tab-manager",
 	"displayName": "Tabby Tab Manager",
 	"description": "Manage, Filter and Restore tabs easily.",
-	"version": "0.0.4",
+	"version": "0.1.0",
 	"publisher": "NamitArora",
 	"private": false,
 	"icon": "media/icon.png",
@@ -74,8 +74,18 @@
 				"when": "tabModeActive  && !inputBoxVisible"
 			},
 			{
+				"command": "tabby.closeAllTabs",
+				"key": "c",
+				"when": "tabModeActive  && !inputBoxVisible"
+			},
+			{
 				"command": "tabby.reopenFromHistory",
 				"key": "h",
+				"when": "tabModeActive  && !inputBoxVisible"
+			},
+			{
+				"command": "tabby.undoRecentlyClosedTabs",
+				"key": "u",
 				"when": "tabModeActive  && !inputBoxVisible"
 			},
 			{
