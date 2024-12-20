@@ -79,19 +79,24 @@ export function filterTabsByPattern<T extends vscode.Tab | Tab>(
 			}
 			// filter by path when pattern starts with '?'
 			else if (filter.startsWith('?')) {
-				const filterPath = utils.validateAndObtainAbsolutePath(filter.slice(1));
-				//console.log("filterpath = ", filterPath);
+				const match_subfolders = filter.endsWith('*');
+				const cleaned_filter = match_subfolders? filter.slice(1, -1): filter.slice(1);
+				const filterPath = utils.validateAndObtainAbsolutePath(cleaned_filter);
+				// console.log("filterpath = ", filterPath);
 				if (filterPath) {
 					if (tabUri) {
 						const tabFolderPath = vscode.Uri.file(path.dirname(tabUri.path)).path;
-						if (tabFolderPath === filterPath) {
+						// console.log("tabfolderpath = ", tabFolderPath);
+						if (tabFolderPath === filterPath || (match_subfolders && tabFolderPath.startsWith(filterPath))) {
 							matched = true;
 							break;
 						}
 					} else if (tabModifiedUri && tabOriginalUri) {
 						const tabModifiedFolderPath = vscode.Uri.file(path.dirname(tabModifiedUri.path)).path;
 						const tabOriginalFolderPath = vscode.Uri.file(path.dirname(tabOriginalUri.path)).path;
-						if (tabModifiedFolderPath === filterPath || tabOriginalFolderPath === filterPath) {
+						const tabModifiedMatch = tabModifiedFolderPath === filterPath || (match_subfolders && tabModifiedFolderPath.startsWith(filterPath));
+						const tabOriginalMatch = tabOriginalFolderPath === filterPath || (match_subfolders && tabOriginalFolderPath.startsWith(filterPath));
+						if ( tabModifiedMatch || tabOriginalMatch ) {
 							matched = true;
 							break;
 						}

@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.2.0
+ - Added ability to match tabs within all subdirectories of the specified path.
 ## 0.1.0
  - Added shortcut (u) to undo last tab close operation.
  - Added shortcut (c) to close all tabs.
